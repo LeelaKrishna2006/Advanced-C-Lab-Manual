@@ -16,7 +16,33 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    int main() {
+        int number;
+
+    printf("Enter a number (1 to 10): ");
+    scanf("%d", &number);
+
+    printf("You entered: ");
+    switch(number) {
+        case 1: printf("one"); break;
+        case 2: printf("two"); break;
+        case 3: printf("three"); break;
+        case 4: printf("four"); break;
+        case 5: printf("five"); break;
+        case 6: printf("six"); break;
+        case 7: printf("seven"); break;
+        case 8: printf("eight"); break;
+        case 9: printf("nine"); break;
+        case 10: printf("ten"); break;
+        default: printf("Invalid number. Please enter a number from 1 to 10.");
+    }
+
+    printf("\n");
+    return 0;
+    }
+
 
 
 
@@ -24,7 +50,8 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter a number (1 to 10): 4
+    You entered: four
 
 
 
@@ -46,16 +73,41 @@ Algorithm:
 6.	End
  
 Program:
+    #include <stdio.h>
+    
+    int main() {
+        char input[100];
+        int freq[10] = {0};
+        int i;
 
-//type your code here
+    printf("Enter a string of digits: ");
+    scanf("%s", input);
+
+    for (i = 0; input[i] != '\0'; i++) {
+        if (input[i] >= '0' && input[i] <= '3') {
+            freq[input[i] - '0']++;
+        }
+    }
+
+    for (i = 0; i < 10; i++) {
+        printf("%d ", freq[i]);
+    }
+
+    printf("\n");
+    return 0;
+    }
+
+
 
 
 
 
 Output:
 
+    
+    Enter a string of digits: 012301233100
+    4 3 3 2 0 0 0 0 0 0
 
-//paste your output here
 
 
 
@@ -117,15 +169,37 @@ Algorithm:
  
 Program:
 
-//type your code here
+     #include <stdio.h>
+     
+     int main() {
+         int n, i, j;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    for(i = 1; i <= n; i++) {
+        for(j = 1; j <= i; j++) {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+
+    return 0;
+    }
+
 
 
 
 
 Output:
 
-
-//paste your output here
+    
+    Enter a number: 4
+    1
+    1 2
+    1 2 3
+    1 2 3 4
+    
 
 
 
@@ -156,7 +230,24 @@ o	Call the square() function and display the result.
 
 Program:
 
-//type your code here
+     #include <stdio.h>
+     
+     int square();  // Function declaration
+     
+     int main() {
+         int result;
+         result = square();  // Function call
+         printf("Square of the number is: %d\n", result);
+         return 0;
+     }
+     
+     int square() {
+         int num;
+         printf("Enter a number: ");
+         scanf("%d", &num);
+         return num * num;
+     }
+
 
 
 
@@ -164,7 +255,9 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter a number: 5
+    Square of the number is: 25
+    
 
 
 

@@ -16,12 +16,59 @@ Else
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <string.h>
+    
+    struct Person {
+        char name[50];
+        int age;
+    };
+    
+    int main() {
+        int n, i;
+
+    printf("Enter number of people: ");
+    scanf("%d", &n);
+
+    struct Person people[n];
+
+    for(i = 0; i < n; i++) {
+        printf("Enter name of person %d: ", i + 1);
+        scanf("%s", people[i].name);
+        printf("Enter age of person %d: ", i + 1);
+        scanf("%d", &people[i].age);
+    }
+
+    printf("\nVaccine Eligibility Result:\n");
+
+    for(i = 0; i < n; i++) {
+        if(people[i].age > 6) {
+            printf("%s is eligible for vaccination\n", people[i].name);
+        } else {
+            printf("%s is not eligible for vaccination\n", people[i].name);
+        }
+    }
+
+    return 0;
+}
+
 
 
 Output:
 
-//paste your output here
+    Enter number of people: 3
+    Enter name of person 1: Alice
+    Enter age of person 1: 8
+    Enter name of person 2: Bob
+    Enter age of person 2: 5
+    Enter name of person 3: Charlie
+    Enter age of person 3: 12
+    
+    Vaccine Eligibility Result:
+    Alice is eligible for vaccination
+    Bob is not eligible for vaccination
+    Charlie is eligible for vaccination
+
 
 
 Result:
@@ -44,7 +91,43 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <string.h>
+    
+    struct Person {
+        char name[50];
+        int age;
+    };
+    
+    void displayPerson(struct Person p) {
+        printf("Name: %s\n", p.name);
+        printf("Age: %d\n", p.age);
+    }
+    
+    struct Person updateAge(struct Person p) {
+        p.age += 1;
+        return p;
+    }
+    
+    int main() {
+        struct Person person1;
+    
+    printf("Enter name: ");
+    scanf("%s", person1.name);
+    printf("Enter age: ");
+    scanf("%d", &person1.age);
+    
+    printf("\nBefore update:\n");
+    displayPerson(person1);
+    
+    person1 = updateAge(person1);
+
+    printf("\nAfter update:\n");
+    displayPerson(person1);
+    
+    return 0;
+    }
+ 
 
 
 
@@ -52,7 +135,17 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter name: John
+    Enter age: 25
+    
+    Before update:
+    Name: John
+    Age: 25
+    
+    After update:
+    Name: John
+    Age: 26
+
 
 
 
@@ -86,7 +179,32 @@ Use scanf to input the file name into the name array.
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+
+    int main() {
+    char filename[100];
+    FILE *fp;
+    char ch;
+
+    printf("Enter the file name: ");
+    scanf("%s", filename);
+
+    fp = fopen(filename, "r");
+
+    if (fp == NULL) {
+        printf("Unable to open the file.\n");
+        return 1;
+    }
+
+    printf("\nContents of the file:\n");
+    while ((ch = fgetc(fp)) != EOF) {
+        putchar(ch);
+    }
+
+    fclose(fp);
+    return 0;
+}
+
 
 
 
@@ -94,7 +212,12 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter the file name: sample.txt
+
+    Contents of the file:
+    Hello, this is a test file.
+    It has multiple lines.
+
 
 
 
@@ -133,16 +256,49 @@ Use scanf to input the file name into the name array and the number of strings i
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    int main() {
+        char filename[100];
+        char text[1000];
+        FILE *fp;
+
+    printf("Enter the file name: ");
+    scanf("%s", filename);
+
+    fp = fopen(filename, "w");
+
+    if (fp == NULL) {
+        printf("Error opening the file.\n");
+        return 1;
+    }
+
+    printf("Enter text to write into the file:\n");
+    getchar();  // Clear newline from input buffer
+    fgets(text, sizeof(text), stdin);
+
+    fputs(text, fp);
+
+    fclose(fp);
+
+    printf("Text successfully written to %s\n", filename);
+
+    return 0;
+    }
+
 
 
 
 
 Output:
 
-
-//paste your output here
-
+    
+    Enter the file name: notes.txt
+    Enter text to write into the file:
+    This is my first file using C program.
+    
+    Text successfully written to notes.txt
+    
 
 
 
@@ -186,8 +342,35 @@ Algorithm:
 13.End the program by returning 0.
 
 Program:
+    
+    #include <stdio.h>
+    
+    struct Student {
+        int rollNo;
+        char name[50];
+        float marks;
+    };
+    
+    int main() {
+        struct Student s;
 
-//type your code here
+    printf("Enter student roll number: ");
+    scanf("%d", &s.rollNo);
+
+    printf("Enter student name: ");
+    scanf("%s", s.name);
+
+    printf("Enter student marks: ");
+    scanf("%f", &s.marks);
+
+    printf("\nStudent Details:\n");
+    printf("Roll Number: %d\n", s.rollNo);
+    printf("Name: %s\n", s.name);
+    printf("Marks: %.2f\n", s.marks);
+
+    return 0;
+}
+
 
 
 
@@ -195,7 +378,14 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter student roll number: 101
+    Enter student name: Ravi
+    Enter student marks: 87.5
+    
+    Student Details:
+    Roll Number: 101
+    Name: Ravi
+    Marks: 87.50
 
 
 

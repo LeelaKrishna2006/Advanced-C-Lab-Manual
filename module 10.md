@@ -10,11 +10,73 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    
+    void insert(struct Node** head, int data) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->next = *head;
+        *head = newNode;
+    }
+    
+    int search(struct Node* head, int key) {
+        struct Node* temp = head;
+        while (temp != NULL) {
+            if (temp->data == key) {
+                return 1;  // Element found
+            }
+            temp = temp->next;
+        }
+        return 0;  // Element not found
+    }
+    
+    void display(struct Node* head) {
+        struct Node* temp = head;
+        while (temp != NULL) {
+            printf("%d -> ", temp->data);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
+    
+    int main() {
+        struct Node* head = NULL;
+        int key, found;
+
+    insert(&head, 10);
+    insert(&head, 20);
+    insert(&head, 30);
+    insert(&head, 40);
+    insert(&head, 50);
+
+    printf("Linked List: ");
+    display(head);
+
+    printf("Enter the element to search: ");
+    scanf("%d", &key);
+
+    found = search(head, key);
+    if (found) {
+        printf("Element %d found in the linked list.\n", key);
+    } else {
+        printf("Element %d not found in the linked list.\n", key);
+    }
+
+    return 0;
+}
 
 Output:
 
-//paste your output here
+    Linked List: 50 -> 40 -> 30 -> 20 -> 10 -> NULL
+    Enter the element to search: 30
+    Element 30 found in the linked list.
+
 
 
 
@@ -34,11 +96,91 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    
+    void insertAtBeginning(struct Node** head, int data) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->next = *head;
+        *head = newNode;
+    }
+    
+    void insertAtEnd(struct Node** head, int data) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        struct Node* temp = *head;
+        newNode->data = data;
+        newNode->next = NULL;
+        
+        if (*head == NULL) {
+            *head = newNode;
+            return;
+        }
+        
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    
+    void insertAtPosition(struct Node** head, int data, int position) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        struct Node* temp = *head;
+        newNode->data = data;
+    
+        if (position == 0) {
+            newNode->next = *head;
+            *head = newNode;
+            return;
+        }
+    
+        for (int i = 0; temp != NULL && i < position - 1; i++) {
+            temp = temp->next;
+        }
+    
+        if (temp == NULL) {
+            printf("Position is out of range\n");
+            return;
+        }
+    
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+    
+    void display(struct Node* head) {
+        struct Node* temp = head;
+        while (temp != NULL) {
+            printf("%d -> ", temp->data);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
+    
+    int main() {
+        struct Node* head = NULL;
+        
+        insertAtBeginning(&head, 10);
+        insertAtEnd(&head, 20);
+        insertAtEnd(&head, 30);
+        insertAtBeginning(&head, 5);
+        insertAtPosition(&head, 15, 2);
+    
+        printf("Linked List: ");
+        display(head);
+    
+        return 0;
+    }
+
 
 Output:
 
-//paste your output here
+     Linked List: 5 -> 10 -> 15 -> 20 -> 30 -> NULL
+
 
  
 Result:
@@ -58,11 +200,83 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+        struct Node* prev;
+    };
+    
+    void insertAtEnd(struct Node** head, int data) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        struct Node* temp = *head;
+        newNode->data = data;
+        newNode->next = NULL;
+        newNode->prev = NULL;
+    
+        if (*head == NULL) {
+            *head = newNode;
+            return;
+        }
+    
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+    
+        temp->next = newNode;
+        newNode->prev = temp;
+    }
+    
+    void traverseForward(struct Node* head) {
+        struct Node* temp = head;
+        printf("Forward traversal: ");
+        while (temp != NULL) {
+            printf("%d -> ", temp->data);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
+    
+    void traverseBackward(struct Node* head) {
+        struct Node* temp = head;
+        if (temp == NULL) {
+            return;
+        }
+    
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+    
+        printf("Backward traversal: ");
+        while (temp != NULL) {
+            printf("%d -> ", temp->data);
+            temp = temp->prev;
+        }
+        printf("NULL\n");
+    }
+    
+    int main() {
+        struct Node* head = NULL;
+    
+        insertAtEnd(&head, 10);
+        insertAtEnd(&head, 20);
+        insertAtEnd(&head, 30);
+        insertAtEnd(&head, 40);
+        insertAtEnd(&head, 50);
+    
+        traverseForward(head);
+        traverseBackward(head);
+    
+        return 0;
+    }
+
 
 Output:
 
-//paste your output here
+    Forward traversal: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
+    Backward traversal: 50 -> 40 -> 30 -> 20 -> 10 -> NULL
 
 
 Result:
@@ -83,11 +297,102 @@ Algorithm:
  
 Program:
 
-//type your code here
+     #include <stdio.h>
+     #include <stdlib.h>
+     
+     struct Node {
+         int data;
+         struct Node* next;
+         struct Node* prev;
+     };
+     
+     void insertAtBeginning(struct Node** head, int data) {
+         struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+         newNode->data = data;
+         newNode->next = *head;
+         newNode->prev = NULL;
+     
+         if (*head != NULL) {
+             (*head)->prev = newNode;
+         }
+         *head = newNode;
+     }
+     
+     void insertAtEnd(struct Node** head, int data) {
+         struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+         struct Node* temp = *head;
+         newNode->data = data;
+         newNode->next = NULL;
+     
+         if (*head == NULL) {
+             newNode->prev = NULL;
+             *head = newNode;
+             return;
+         }
+     
+         while (temp->next != NULL) {
+             temp = temp->next;
+         }
+         temp->next = newNode;
+         newNode->prev = temp;
+     }
+     
+     void insertAtPosition(struct Node** head, int data, int position) {
+         struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+         struct Node* temp = *head;
+         newNode->data = data;
+     
+         if (position == 0) {
+             insertAtBeginning(head, data);
+             return;
+         }
+     
+         for (int i = 0; temp != NULL && i < position - 1; i++) {
+             temp = temp->next;
+         }
+     
+         if (temp == NULL) {
+             printf("Position is out of range\n");
+             return;
+         }
+     
+         newNode->next = temp->next;
+         if (temp->next != NULL) {
+             temp->next->prev = newNode;
+         }
+         temp->next = newNode;
+         newNode->prev = temp;
+     }
+     
+     void display(struct Node* head) {
+         struct Node* temp = head;
+         while (temp != NULL) {
+             printf("%d <-> ", temp->data);
+             temp = temp->next;
+         }
+         printf("NULL\n");
+     }
+     
+     int main() {
+         struct Node* head = NULL;
+     
+         insertAtBeginning(&head, 10);
+         insertAtEnd(&head, 20);
+         insertAtEnd(&head, 30);
+         insertAtBeginning(&head, 5);
+         insertAtPosition(&head, 15, 2);
+     
+         printf("Doubly Linked List: ");
+         display(head);
+     
+         return 0;
+     }
+
 
 Output:
 
-//paste your output here
+    Doubly Linked List: 5 <-> 10 <-> 15 <-> 20 <-> 30 <-> NULL
+    
 
 
 Result:
@@ -125,11 +430,96 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 Program:
 
-//type your code here
+     #include <stdio.h>
+     #include <stdlib.h>
+     
+     struct Node {
+         int data;
+         struct Node* next;
+     };
+     
+     void insertAtEnd(struct Node** head, int data) {
+         struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+         struct Node* temp = *head;
+         newNode->data = data;
+         newNode->next = NULL;
+         
+         if (*head == NULL) {
+             *head = newNode;
+             return;
+         }
+         
+         while (temp->next != NULL) {
+             temp = temp->next;
+         }
+         temp->next = newNode;
+     }
+     
+     void deleteElement(struct Node** head, int key) {
+         struct Node* temp = *head;
+         struct Node* prev = NULL;
+         
+         if (temp != NULL && temp->data == key) {
+             *head = temp->next;
+             free(temp);
+             printf("Element %d deleted from the linked list\n", key);
+             return;
+         }
+     
+         while (temp != NULL && temp->data != key) {
+             prev = temp;
+             temp = temp->next;
+         }
+         
+         if (temp == NULL) {
+             printf("Element %d not found in the linked list\n", key);
+             return;
+         }
+     
+         prev->next = temp->next;
+         free(temp);
+         printf("Element %d deleted from the linked list\n", key);
+     }
+     
+     void display(struct Node* head) {
+         struct Node* temp = head;
+         while (temp != NULL) {
+             printf("%d -> ", temp->data);
+             temp = temp->next;
+         }
+         printf("NULL\n");
+     }
+     
+     int main() {
+         struct Node* head = NULL;
+     
+         insertAtEnd(&head, 10);
+         insertAtEnd(&head, 20);
+         insertAtEnd(&head, 30);
+         insertAtEnd(&head, 40);
+         insertAtEnd(&head, 50);
+     
+         printf("Linked List before deletion: ");
+         display(head);
+     
+         deleteElement(&head, 30);
+         deleteElement(&head, 10);
+         deleteElement(&head, 100);
+     
+         printf("Linked List after deletion: ");
+         display(head);
+     
+         return 0;
+     }
+
 
 Output:
 
-//paste your output here
+    Linked List before deletion: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
+      Element 30 deleted from the linked list
+      Element 10 deleted from the linked list
+      Element 100 not found in the linked list
+      Linked List after deletion: 20 -> 40 -> 50 -> NULL
 
 
 

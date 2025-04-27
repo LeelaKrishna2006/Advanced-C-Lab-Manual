@@ -12,10 +12,37 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
+
+      #include <stdio.h>
+                
+      int findGreatest(int a, int b, int c) {
+          if (a >= b && a >= c) {
+              return a;
+          } else if (b >= a && b >= c) {
+              return b;
+          } else {
+              return c;
+          }
+      }
+      
+      int main() {
+          int num1, num2, num3, greatest;
+      
+          printf("Enter three numbers: ");
+          scanf("%d %d %d", &num1, &num2, &num3);
+      
+          greatest = findGreatest(num1, num2, num3);
+      
+          printf("The greatest number is: %d\n", greatest);
+      
+          return 0;
+      }
 
 Output:
-//paste your output here
+
+       Enter three numbers: 12 45 33
+       The greatest number is: 45
+       
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -36,10 +63,42 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
+
+    #include <stdio.h>
+    
+    int main() {
+        int n;
+        int maxAnd = 0, maxOr = 0, maxXor = 0;
+
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            int a = i & j;
+            int o = i | j;
+            int x = i ^ j;
+
+            if (a > maxAnd) maxAnd = a;
+            if (o > maxOr) maxOr = o;
+            if (x > maxXor) maxXor = x;
+        }
+    }
+
+    printf("Maximum AND value: %d\n", maxAnd);
+    printf("Maximum OR value : %d\n", maxOr);
+    printf("Maximum XOR value: %d\n", maxXor);
+
+    return 0;
+    }
 
 Output:
-//paste your output here
+
+        Enter the value of n: 5
+        Maximum AND value: 4
+        Maximum OR value : 7
+        Maximum XOR value: 7
+
 
 Result:
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
@@ -59,10 +118,51 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+
+    #include <stdio.h>
+    
+    void viewItems() {
+        printf("Viewing items...\n");
+    }
+    
+    void addItem() {
+        printf("Adding item...\n");
+    }
+    
+    void deleteItem() {
+        printf("Deleting item...\n");
+    }
+    
+    int main() {
+        int choice;
+
+    while (1) {
+        printf("\n1. View Items\n2. Add Item\n3. Delete Item\n4. Exit\n");
+        printf("Enter your request: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: viewItems(); break;
+            case 2: addItem(); break;
+            case 3: deleteItem(); break;
+            case 4: return 0;
+            default: printf("Invalid request\n");
+        }
+    }
+
+    return 0;
+    }
+
 
 Output:
-//paste your output here
+
+     1. View Items
+     2. Add Item
+     3. Delete Item
+     4. Exit
+     Enter your request: 2
+     Adding item...
+
 
 
 Result:
@@ -86,10 +186,34 @@ Algorithm:
 
 
 Program:
-//type your code here
+
+     #include <stdio.h>
+     
+     int main() {
+         int arr[100], n, sum = 0;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+
+    printf("Sum of the array elements = %d\n", sum);
+
+    return 0;
+}
+
 
 Output:
-//paste your output here
+    
+    Enter the number of elements: 5
+    Enter 5 integers:
+    1 2 3 4 5
+    Sum of the array elements = 15
+
 
  
 
@@ -99,7 +223,7 @@ Thus, the program prints the sum of the integers in the array is verified succes
 
 
  
-EXP NO 25: C PROGRAM TO COUNT THE NUMBER OF WORDS IN A      SENTENCE
+EXP NO 25: C PROGRAM TO COUNT THE NUMBER OF WORDS IN A SENTENCE
 
 
 
@@ -120,10 +244,39 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 
 Program:
-//type your code here
+
+    #include <stdio.h>
+    
+    int main() {
+        char sentence[1000];
+        int i = 0, words = 0;
+
+    printf("Enter a sentence: ");
+    fgets(sentence, sizeof(sentence), stdin);
+
+    while (sentence[i] != '\0') {
+        if ((sentence[i] == ' ' || sentence[i] == '\n' || sentence[i] == '\t') &&
+            (i > 0 && sentence[i - 1] != ' ' && sentence[i - 1] != '\n' && sentence[i - 1] != '\t')) {
+            words++;
+        }
+        i++;
+    }
+
+    if (i > 0 && sentence[i - 1] != ' ' && sentence[i - 1] != '\n' && sentence[i - 1] != '\t') {
+        words++;
+    }
+
+    printf("Number of words: %d\n", words);
+
+    return 0;
+     }
+
 
 Output:
-//paste your output here
+
+    Enter a sentence: This is a sample sentence.
+    Number of words: 5
+
 
 
 

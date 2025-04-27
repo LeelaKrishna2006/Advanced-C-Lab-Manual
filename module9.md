@@ -13,11 +13,81 @@ Algorithm:
  
 Program:
 
-//type your code here
+     #include <stdio.h>
+     #define MAX 5
+     
+     int stack[MAX];
+     int top = -1;
+     
+     void push(int value) {
+         if (top == MAX - 1) {
+             printf("Stack Overflow! Cannot push %d\n", value);
+         } else {
+             top++;
+             stack[top] = value;
+             printf("%d pushed into stack\n", value);
+         }
+     }
+     
+     int pop() {
+         if (top == -1) {
+             printf("Stack Underflow! No element to pop\n");
+             return -1;
+         } else {
+             int poppedValue = stack[top];
+             top--;
+             return poppedValue;
+         }
+     }
+     
+     void display() {
+         if (top == -1) {
+             printf("Stack is empty\n");
+         } else {
+             printf("Stack elements: ");
+             for (int i = top; i >= 0; i--) {
+                 printf("%d ", stack[i]);
+             }
+             printf("\n");
+         }
+     }
+     
+     int main() {
+         push(10);
+         push(20);
+         push(30);
+         push(40);
+         push(50);
+
+    display();
+
+    int poppedElement = pop();
+    if (poppedElement != -1) {
+        printf("Popped element: %d\n", poppedElement);
+    }
+
+    display();
+
+    push(60);
+    display();
+
+    return 0;
+}
+
 
 Output:
 
-//paste your output here
+    10 pushed into stack
+    20 pushed into stack
+    30 pushed into stack
+    40 pushed into stack
+    50 pushed into stack
+    Stack elements: 50 40 30 20 10 
+    Popped element: 50
+    Stack elements: 40 30 20 10 
+    60 pushed into stack
+    Stack elements: 60 40 30 20 10 
+    
 
 
 
@@ -36,11 +106,38 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #define MAX 5
+    
+    int stack[MAX];
+    int top = -1;
+    
+    void push(int value) {
+        if (top == MAX - 1) {
+            printf("Stack Overflow! Cannot push %d\n", value);
+        } else {
+            top++;
+            stack[top] = value;
+            printf("%d pushed into stack\n", value);
+        }
+    }
+    
+    int main() {
+        int element;
+        printf("Enter an element to push into the stack: ");
+        scanf("%d", &element);
+
+    push(element);
+
+    return 0;
+    }
+
 
 Output:
 
-//paste your output here
+    Enter an element to push into the stack: 10
+    10 pushed into stack
+
 
 
 
@@ -62,11 +159,58 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #define MAX 5
+    
+    int queue[MAX];
+    int front = -1, rear = -1;
+    
+    void enqueue(int value) {
+        if (rear == MAX - 1) {
+            printf("Queue Overflow! Cannot enqueue %d\n", value);
+        } else {
+            if (front == -1) {
+                front = 0;
+            }
+            rear++;
+            queue[rear] = value;
+            printf("%d enqueued into queue\n", value);
+        }
+    }
+    
+    void display() {
+        if (front == -1) {
+            printf("Queue is empty\n");
+        } else {
+            printf("Queue elements: ");
+            for (int i = front; i <= rear; i++) {
+                printf("%d ", queue[i]);
+            }
+            printf("\n");
+        }
+    }
+    
+    int main() {
+        enqueue(10);
+        enqueue(20);
+        enqueue(30);
+        enqueue(40);
+        enqueue(50);
+    
+        display();
+    
+        return 0;
+    }
+
 
 Output:
 
-//paste your output here
+    10 enqueued into queue
+    20 enqueued into queue
+    30 enqueued into queue
+    40 enqueued into queue
+    50 enqueued into queue
+    Queue elements: 10 20 30 40 50
 
 
 Result:
@@ -86,11 +230,44 @@ Algorithm:
 
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #define MAX 5
+    
+    int queue[MAX];
+    int front = -1, rear = -1;
+    
+    void enqueue(int value) {
+        if (rear == MAX - 1) {
+            printf("Queue Overflow! Cannot insert %d\n", value);
+        } else {
+            if (front == -1) {
+                front = 0;
+            }
+            rear++;
+            queue[rear] = value;
+            printf("%d inserted into queue\n", value);
+        }
+    }
+    
+    int main() {
+        enqueue(10);
+        enqueue(20);
+        enqueue(30);
+        enqueue(40);
+        enqueue(50);
+    
+        return 0;
+    }
+
 
 Output:
+    
+    10 inserted into queue
+    20 inserted into queue
+    30 inserted into queue
+    40 inserted into queue
+    50 inserted into queue
 
-//paste your output here
 
 Result:
 Thus, the program to insert elements in queue using array is verified successfully.
@@ -121,11 +298,62 @@ o	After deletion, check if the front pointer has passed the rear pointer (front 
 
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #define MAX 5
+    
+    int queue[MAX];
+    int front = -1, rear = -1;
+    
+    void enqueue(int value) {
+        if (rear == MAX - 1) {
+            printf("Queue Overflow! Cannot insert %d\n", value);
+        } else {
+            if (front == -1) {
+                front = 0;
+            }
+            rear++;
+            queue[rear] = value;
+            printf("%d inserted into queue\n", value);
+        }
+    }
+    
+    void dequeue() {
+        if (front == -1) {
+            printf("Queue Underflow! No element to delete\n");
+        } else {
+            printf("%d deleted from queue\n", queue[front]);
+            if (front == rear) {
+                front = rear = -1;
+            } else {
+                front++;
+            }
+        }
+    }
+    
+    int main() {
+        enqueue(10);
+        enqueue(20);
+        enqueue(30);
+        enqueue(40);
+        enqueue(50);
+        
+        dequeue();
+        dequeue();
+        
+        return 0;
+    }
+
 
 Output:
 
-//paste your output here
+    10 inserted into queue
+    20 inserted into queue
+    30 inserted into queue
+    40 inserted into queue
+    50 inserted into queue
+    10 deleted from queue
+    20 deleted from queue
+
 
 
 Result:
